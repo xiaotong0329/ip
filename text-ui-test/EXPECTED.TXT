@@ -27,4 +27,14 @@ Here are the tasks in your list:
 2.[D][ ] return book (by: Sunday)
 3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
 I'm not sure about that, how about we talk about something else.
+Here are the tasks in your list:
+1.[T][ ] borrow book
+2.[D][ ] return book (by: Sunday)
+3.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+Noted. I've removed this task:
+  [E][ ] project meeting (from: Mon 2pm to: 4pm)
+Now you have 2 tasks in the list.
+Here are the tasks in your list:
+1.[T][ ] borrow book
+2.[D][ ] return book (by: Sunday)
 Bye. Hope to see you again soon!

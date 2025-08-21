@@ -27,6 +27,8 @@ public class Meeseeks {
                 Marking(command);
             } else if (command.startsWith("unmark")) {
                 Marking(command);
+            } else if (command.startsWith("delete")) {
+                Delete(command);
             } else if (command.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
@@ -110,5 +112,13 @@ public class Meeseeks {
             System.out.println("OK, I've marked this task as not done yet:");
             System.out.println("  " + t);
         }
+    }
+
+    public static void Delete(String input) {
+        int index = Integer.parseInt(input.substring(7));
+        Task removed = list.remove(index - 1);
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + removed);
+        System.out.println("Now you have " + list.size() + " tasks in the list.");
     }
 }
