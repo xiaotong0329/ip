@@ -1,23 +1,37 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Meeseeks {
     public static ArrayList<Task> list = new ArrayList<>();
 
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Hello! I'm Meeseeks\nLook at me!\n");
 
-        System.out.println("Hello! I'm Meeseeks\n" +
-                "What can I do for you?\n");
-        AddTodo("borrow book");
-        AddDeadline("return book", "Sunday");
-        AddEvent("project meeting", "Mon 2pm", "4pm");
-        Listing("list");
 
-        Marking("mark 2");
-        Listing("list");
+        while (sc.hasNextLine()) {
+            String command = sc.nextLine();
 
-        Marking("unmark 2");
-        Listing("list");
+            if (command.startsWith("todo")) {
+                AddTodo(command.substring(5));
+            } else if (command.startsWith("deadline")) {
+                String[] parts = command.split(" /by ", 2);
+                AddDeadline(parts[0].substring(9), parts[1]);
+            } else if (command.startsWith("event")) {
+                String[] parts = command.split(" /from | /to ");
+                AddEvent(parts[0].substring(6), parts[1], parts[2]);
+            } else if (command.equals("list")) {
+                Listing();
+            } else if (command.startsWith("mark")) {
+                Marking(command);
+            } else if (command.startsWith("unmark")) {
+                Marking(command);
+            } else if (command.equals("bye")) {
+                System.out.println("Bye. Hope to see you again soon!");
+                break;
+            }
+        }
 
 
     }
@@ -55,15 +69,11 @@ public class Meeseeks {
         System.out.println("Now you have " + list.size() + " tasks in the list.");
     }
 
-    public static void Listing(String input) {
-        System.out.println("list\n");
-
-        if(input.equals("list")) {
+    public static void Listing() {
             System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < list.size(); i++) {
                 System.out.println((i + 1) + "." + list.get(i));
             }
-        }
 
     }
 
