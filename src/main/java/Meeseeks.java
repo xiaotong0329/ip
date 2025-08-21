@@ -30,6 +30,8 @@ public class Meeseeks {
             } else if (command.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
+            } else {
+                System.out.println("I'm not sure about that, how about we talk about something else.");
             }
         }
 
@@ -37,21 +39,36 @@ public class Meeseeks {
     }
 
     public static void AddTodo(String description) {
-        Task t = new ToDo(description);
-        list.add(t);
-        printAddedTask(t);
+        if(description == null || description.equals("")) {
+            System.out.println("Oh Geez u need to put a description!");
+        }
+        else {
+            Task t = new ToDo(description);
+            list.add(t);
+            printAddedTask(t);
+        }
     }
 
     public static void AddDeadline(String description, String by) {
-        Task t = new Deadline(description, by);
-        list.add(t);
-        printAddedTask(t);
+        if(description == null || description.equals("")) {
+            System.out.println("Oh Geez u need to put a description!");
+        }
+        else {
+            Task t = new Deadline(description, by);
+            list.add(t);
+            printAddedTask(t);
+        }
     }
 
     public static void AddEvent(String description, String from, String to) {
-        Task t = new Event(description, from, to);
-        list.add(t);
-        printAddedTask(t);
+        if(description == null || description.equals("")) {
+            System.out.println("Oh Geez u need to put a description!");
+        }
+        else {
+            Task t = new Event(description, from, to);
+            list.add(t);
+            printAddedTask(t);
+        }
     }
 
     public static void Echo(String input) {
