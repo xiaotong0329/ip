@@ -24,6 +24,10 @@ public class Task {
         return getStatus() + " " + name;
     }
 
+    public String toFileFormat() {
+        return "T | " + (isDone ? "1" : "0") + " | " + name;
+    }
+
 }
 
 

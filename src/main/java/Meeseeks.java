@@ -1,10 +1,20 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Meeseeks {
+    private static final String DIRECTORY_PATH = "./data/";
+    private static final String FILE_PATH = "./data/meeseeks.txt";
     public static ArrayList<Task> list = new ArrayList<>();
 
     public static void main(String[] args) {
+
+        loadData();
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello! I'm Meeseeks\nLook at me!\n");
@@ -121,4 +131,90 @@ public class Meeseeks {
         System.out.println("  " + removed);
         System.out.println("Now you have " + list.size() + " tasks in the list.");
     }
+
+
+    private static void saveData() {
+        try {
+            
+            File directory = new File(DIRECTORY_PATH);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            FileWriter writer = new FileWriter(FILE_PATH);
+            for (Task task : list) {
+                writer.write(task.toFileFormat() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Oh Geez! I couldn't save your tasks: " + e.getMessage());
+        }
+    }
+
+    private static void loadData() {
+        try {
+            Path path = Paths.get(FILE_PATH);
+            if (!Files.exists(path)) {
+                System.out.println("No existing data found. Starting with an empty task list.");
+                return;
+            }
+
+            ArrayList<String> lines = new ArrayList<>(Files.readAllLines(path));
+            for (String line : lines) {
+                try {
+                    Task task = parseTaskFromFile(line);
+                    if (task != null) {
+                        list.add(task);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Skipping corrupted line: " + line);
+                }
+            }
+
+            System.out.println("Loaded " + list.size() + " tasks from file.");
+        } catch (IOException e) {
+            System.out.println("Oh Geez! I couldn't load your tasks: " + e.getMessage());
+        }
+    }
+
+    private static Task parseTaskFromFile(String line) {
+        try {
+            String[] parts = line.split(" \\| ");
+            if (parts.length < 3) {
+                throw new IllegalArgumentException("Invalid format");
+            }
+
+            String type = parts[0].trim();
+            boolean isDone = parts[1].trim().equals("1");
+            String description = parts[2].trim();
+
+            Task task;
+
+            switch (type) {
+                case "T":
+                    task = new Task(description);
+                    break;
+                case "D":
+                    if (parts.length < 4) throw new IllegalArgumentException("Deadline missing time");
+                    task = new Deadline(description, parts[3].trim());
+                    break;
+                case "E":
+                    if (parts.length < 5) throw new IllegalArgumentException("Event missing times");
+                    task = new Event(description, parts[3].trim(), parts[4].trim());
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown task type");
+            }
+
+            if (isDone) {
+                task.markAsDone();
+            }
+
+            return task;
+        } catch (Exception e) {
+            System.out.println("Error parsing line: " + line + " - " + e.getMessage());
+            return null;
+        }
+    }
+    
 }
