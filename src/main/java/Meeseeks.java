@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,7 +29,12 @@ public class Meeseeks {
                 AddTodo(command.substring(5));
             } else if (command.startsWith("deadline")) {
                 String[] parts = command.split(" /by ", 2);
-                AddDeadline(parts[0].substring(9), parts[1]);
+                String description = parts[0].substring(9).trim();
+
+                DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+                LocalDateTime by = LocalDateTime.parse(parts[1].trim(), inputFormat);
+
+                AddDeadline(description, by);
             } else if (command.startsWith("event")) {
                 String[] parts = command.split(" /from | /to ");
                 AddEvent(parts[0].substring(6), parts[1], parts[2]);
@@ -61,7 +68,7 @@ public class Meeseeks {
         }
     }
 
-    public static void AddDeadline(String description, String by) {
+    public static void AddDeadline(String description, LocalDateTime by) {
         if(description == null || description.equals("")) {
             System.out.println("Oh Geez u need to put a description!");
         }
@@ -196,7 +203,8 @@ public class Meeseeks {
                     break;
                 case "D":
                     if (parts.length < 4) throw new IllegalArgumentException("Deadline missing time");
-                    task = new Deadline(description, parts[3].trim());
+                    LocalDateTime by = LocalDateTime.parse(parts[3].trim());
+                    task = new Deadline(description, by);
                     break;
                 case "E":
                     if (parts.length < 5) throw new IllegalArgumentException("Event missing times");
