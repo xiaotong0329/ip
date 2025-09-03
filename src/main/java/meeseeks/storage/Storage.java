@@ -11,6 +11,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+/**
+ * store the current tasks and save them
+ */
 public class Storage {
     private String filePath;
 

@@ -14,20 +14,17 @@ public class AddCommand extends Command {
     private String from;
     private String to;
 
-    // For todo
     public AddCommand(String description, String type) {
         this.description = description.trim();
         this.type = type;
     }
 
-    // For deadline
     public AddCommand(String description, String type, String by) {
         this.description = description.trim();
         this.type = type;
         this.by = by.trim();
     }
 
-    // For event
     public AddCommand(String description, String type, String from, String to) {
         this.description = description.trim();
         this.type = type;
@@ -48,7 +45,6 @@ public class AddCommand extends Command {
                 t = new Deadline(description, byDate);
                 break;
             case "event":
-                // Simplify for now (string storage). Can extend with LocalDateTime like deadline.
                 t = new Event(description, from, to);
                 break;
             default:

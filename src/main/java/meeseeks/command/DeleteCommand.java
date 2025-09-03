@@ -5,6 +5,9 @@ import meeseeks.task.Task;
 import meeseeks.task.TaskList;
 import meeseeks.ui.Ui;
 
+/**
+ * delete command which delete the task from the tasklist
+ */
 public class DeleteCommand extends Command {
     private int index;
 

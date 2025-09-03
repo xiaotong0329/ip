@@ -4,6 +4,9 @@ import meeseeks.storage.Storage;
 import meeseeks.task.TaskList;
 import meeseeks.ui.Ui;
 
+/**
+ * handle unknown commands
+ */
 public class UnknownCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {

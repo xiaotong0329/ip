@@ -7,6 +7,9 @@ import meeseeks.task.Task;
 
 import java.time.LocalDateTime;
 
+/**
+ * parser which parse the command into tasks
+ */
 public class Parser {
     public static Command parse(String fullCommand) {
         if (fullCommand.startsWith("todo")) {
@@ -27,6 +30,11 @@ public class Parser {
         return new UnknownCommand();
     }
 
+    /**
+     *
+     * @param line the line of command which indicates that tasks is delegated
+     * @return Task 
+     */
     public static Task parseTaskFromFile(String line) {
         try {
             String[] parts = line.split(" \\| ");

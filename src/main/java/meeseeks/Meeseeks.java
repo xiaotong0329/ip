@@ -6,6 +6,10 @@ import meeseeks.storage.Storage;
 import meeseeks.task.TaskList;
 import meeseeks.ui.Ui;
 
+/**
+ * Main app which runs the chatbot, start the session
+ */
+
 public class Meeseeks {
     private Storage storage;
     private TaskList tasks;
