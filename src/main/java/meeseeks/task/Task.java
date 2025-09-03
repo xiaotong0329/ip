@@ -1,7 +1,7 @@
 package meeseeks.task;
 
 public class Task {
-    protected String name;
+    public String name;
     protected Boolean isDone;
 
     public Task(String name) {
