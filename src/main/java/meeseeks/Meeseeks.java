@@ -1,3 +1,10 @@
+package meeseeks;
+
+import meeseeks.command.Command;
+import meeseeks.parser.Parser;
+import meeseeks.storage.Storage;
+import meeseeks.task.TaskList;
+import meeseeks.ui.Ui;
 
 public class Meeseeks {
     private Storage storage;

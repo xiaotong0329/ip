@@ -1,3 +1,10 @@
+package meeseeks.command;
+
+import meeseeks.storage.Storage;
+import meeseeks.task.Task;
+import meeseeks.task.TaskList;
+import meeseeks.ui.Ui;
+
 public class DeleteCommand extends Command {
     private int index;
 

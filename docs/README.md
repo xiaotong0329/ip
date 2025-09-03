@@ -1,4 +1,4 @@
-# Meeseeks User Guide
+# meeseeks.meeseeks User Guide
 
 // Update the title above to match the actual product name
 

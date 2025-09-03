@@ -1,3 +1,10 @@
+package meeseeks.parser;
+
+import meeseeks.command.*;
+import meeseeks.task.Deadline;
+import meeseeks.task.Event;
+import meeseeks.task.Task;
+
 import java.time.LocalDateTime;
 
 public class Parser {
@@ -38,12 +45,12 @@ public class Parser {
                     task = new Task(description);
                     break;
                 case "D":
-                    if (parts.length < 4) throw new IllegalArgumentException("Deadline missing time");
+                    if (parts.length < 4) throw new IllegalArgumentException("Meeseeks.task.Deadline missing time");
                     LocalDateTime by = LocalDateTime.parse(parts[3].trim());
                     task = new Deadline(description, by);
                     break;
                 case "E":
-                    if (parts.length < 5) throw new IllegalArgumentException("Event missing times");
+                    if (parts.length < 5) throw new IllegalArgumentException("Meeseeks.task.Event missing times");
                     task = new Event(description, parts[3].trim(), parts[4].trim());
                     break;
                 default:

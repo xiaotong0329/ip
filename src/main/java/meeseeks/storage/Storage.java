@@ -1,3 +1,9 @@
+package meeseeks.storage;
+
+import meeseeks.parser.Parser;
+import meeseeks.task.TaskList;
+import meeseeks.task.Task;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
