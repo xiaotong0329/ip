@@ -39,4 +39,16 @@ public class TaskList {
             System.out.println((i + 1) + "." + tasks.get(i));
         }
     }
+    
+    public String getTasksAsString() {
+        if (tasks.isEmpty()) {
+            return "Your task list is empty!";
+        }
+        
+        StringBuilder result = new StringBuilder("Here are the tasks in your list:\n");
+        for (int i = 0; i < tasks.size(); i++) {
+            result.append((i + 1)).append(".").append(tasks.get(i)).append("\n");
+        }
+        return result.toString().trim();
+    }
 }

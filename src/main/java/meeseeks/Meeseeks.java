@@ -22,6 +22,21 @@ public class Meeseeks {
         }
     }
 
+    public Meeseeks() {
+        this("data/meeseeks.txt");
+    }
+
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            String response = c.executeAndGetResponse(tasks, storage);
+            storage.save(tasks);
+            return response;
+        } catch (Exception e) {
+            return "Oh Geez! " + e.getMessage();
+        }
+    }
+
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -42,6 +57,8 @@ public class Meeseeks {
     }
 
     public static void main(String[] args) {
-        new Meeseeks("data/meeseeks.txt").run();
+        // Text UI is deprecated - use GUI instead
+        // new Meeseeks("data/meeseeks.txt").run();
+        System.out.println("Please use the GUI version by running the Launcher class.");
     }
 }

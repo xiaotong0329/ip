@@ -5,8 +5,12 @@ import java.util.Scanner;
 public class Ui {
     private Scanner sc = new Scanner(System.in);
 
+    private String lastMessage = "";
+
     public void showWelcome() {
-        System.out.println("Hello! I'm Meeseeks.Meeseeks\nLook at me!\n");
+        String message = "Hello! I'm Meeseeks.Meeseeks\nLook at me!\n";
+        System.out.println(message);
+        lastMessage = message;
     }
 
     public String readCommand() {
@@ -18,14 +22,23 @@ public class Ui {
     }
 
     public void showExit() {
-        System.out.println("Bye. Hope to see you again soon!");
+        String message = "Bye. Hope to see you again soon!";
+        System.out.println(message);
+        lastMessage = message;
     }
 
     public void showError(String message) {
-        System.out.println("Oh Geez! " + message);
+        String errorMessage = "Oh Geez! " + message;
+        System.out.println(errorMessage);
+        lastMessage = errorMessage;
     }
 
     public void showMessage(String message) {
         System.out.println(message);
+        lastMessage = message;
+    }
+    
+    public String getLastMessage() {
+        return lastMessage;
     }
 }
