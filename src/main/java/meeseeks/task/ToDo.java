@@ -1,6 +1,6 @@
 package meeseeks.task;
 
-public class ToDo extends Task{
+public class ToDo extends Task {
     public ToDo(String description) {
         super(description);
     }
@@ -14,6 +14,5 @@ public class ToDo extends Task{
     public String toFileFormat() {
         return "T | " + (isDone ? "1" : "0") + " | " + name;
     }
-
 
 }

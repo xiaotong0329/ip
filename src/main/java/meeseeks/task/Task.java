@@ -10,8 +10,10 @@ public class Task {
     }
 
     public String getStatus() {
-        return isDone? "[X]": "[ ]";
+        return isDone ? "[X]" : "[ ]";
     }
+
+    public String getName() { return name; }
 
     public void markAsDone() {
         isDone = true;
