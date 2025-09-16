@@ -9,13 +9,18 @@ import java.time.LocalDateTime;
 
 public class Parser {
     public static Command parse(String fullCommand) {
+        assert fullCommand != null : "Command string cannot be null";
+        assert !fullCommand.trim().isEmpty() : "Command string cannot be empty";
+        
         if (fullCommand.startsWith("todo")) {
             return new AddCommand(fullCommand.substring(5), "todo");
         } else if (fullCommand.startsWith("deadline")) {
             String[] parts = fullCommand.split(" /by ", 2);
+            assert parts.length == 2 : "Deadline command must have both description and time";
             return new AddCommand(parts[0].substring(9), "deadline", parts[1]);
         } else if (fullCommand.startsWith("event")) {
             String[] parts = fullCommand.split(" /from | /to ");
+            assert parts.length == 3 : "Event command must have description, from time, and to time";
             return new AddCommand(parts[0].substring(6), "event", parts[1], parts[2]);
         } else if (fullCommand.equals("list")) {
             return new ListCommand();
@@ -34,6 +39,9 @@ public class Parser {
     }
 
     public static Task parseTaskFromFile(String line) {
+        assert line != null : "Line cannot be null";
+        assert !line.trim().isEmpty() : "Line cannot be empty";
+        
         try {
             String[] parts = line.split(" \\| ");
             if (parts.length < 3) {

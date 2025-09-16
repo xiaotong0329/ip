@@ -8,7 +8,7 @@ public class Ui {
     private String lastMessage = "";
 
     public void showWelcome() {
-        String message = "Hello! I'm Meeseeks.Meeseeks\nLook at me!\n";
+        String message = "Hello! I'm Mr.Meeseeks\nLook at me!\n";
         System.out.println(message);
         lastMessage = message;
     }

@@ -1,2 +1,2 @@
-D | 0 | return book | 2019-12-02T18:00
-T | 0 | watch my lecture video
+D | 1 | return book | 2019-12-02T18:00
+T | 0 | do some trippy sci-fi shit

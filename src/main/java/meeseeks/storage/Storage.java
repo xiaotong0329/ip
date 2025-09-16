@@ -15,6 +15,8 @@ public class Storage {
     private String filePath;
 
     public Storage(String filePath) {
+        assert filePath != null : "File path cannot be null";
+        assert !filePath.trim().isEmpty() : "File path cannot be empty";
         this.filePath = filePath;
     }
 
@@ -36,6 +38,8 @@ public class Storage {
     }
 
     public void save(TaskList tasks) throws IOException {
+        assert tasks != null : "TaskList cannot be null";
+        
         File f = new File(filePath);
         f.getParentFile().mkdirs();
 

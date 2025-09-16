@@ -33,7 +33,7 @@ public class MainWindow extends AnchorPane {
         dukeImage = new Image(this.getClass().getResourceAsStream("/image/meeseeks.png"));
         
         
-        String welcomeMessage = "Hello! I'm Meeseeks.Meeseeks\nLook at me!\n";
+        String welcomeMessage = "Hello! I'm Mr.Meeseeks\nLook at me!\n";
         dialogContainer.getChildren().add(
                 DialogBox.getDukeDialog(welcomeMessage, dukeImage)
         );

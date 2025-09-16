@@ -16,12 +16,17 @@ public class AddCommand extends Command {
 
     // For todo
     public AddCommand(String description, String type) {
+        assert description != null : "Description cannot be null";
+        assert type != null : "Type cannot be null";
         this.description = description.trim();
         this.type = type;
     }
 
     // For deadline
     public AddCommand(String description, String type, String by) {
+        assert description != null : "Description cannot be null";
+        assert type != null : "Type cannot be null";
+        assert by != null : "Deadline time cannot be null";
         this.description = description.trim();
         this.type = type;
         this.by = by.trim();
@@ -29,6 +34,10 @@ public class AddCommand extends Command {
 
     // For event
     public AddCommand(String description, String type, String from, String to) {
+        assert description != null : "Description cannot be null";
+        assert type != null : "Type cannot be null";
+        assert from != null : "From time cannot be null";
+        assert to != null : "To time cannot be null";
         this.description = description.trim();
         this.type = type;
         this.from = from.trim();
