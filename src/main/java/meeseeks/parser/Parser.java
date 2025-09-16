@@ -63,6 +63,8 @@ public class Parser {
             return new MarkCommand(Integer.parseInt(fullCommand.substring(MARK_PREFIX_LENGTH)) - 1);
         } else if (fullCommand.startsWith(UNMARK_COMMAND)) {
             return new UnmarkCommand(Integer.parseInt(fullCommand.substring(UNMARK_PREFIX_LENGTH)) - 1);
+        } else if (fullCommand.equals("stats")) {
+            return new StatsCommand();
         }
         return new UnknownCommand();
     }
