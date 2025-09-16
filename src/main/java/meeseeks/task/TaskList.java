@@ -10,18 +10,24 @@ public class TaskList {
     }
 
     public TaskList(ArrayList<Task> tasks) {
+        assert tasks != null : "Task list cannot be null";
         this.tasks = tasks;
     }
 
     public void add(Task t) {
+        assert t != null : "Task cannot be null";
         tasks.add(t);
     }
 
     public Task delete(int index) {
+        assert index >= 0 : "Index must be non-negative";
+        assert index < tasks.size() : "Index must be within bounds of task list";
         return tasks.remove(index);
     }
 
     public Task get(int index) {
+        assert index >= 0 : "Index must be non-negative";
+        assert index < tasks.size() : "Index must be within bounds of task list";
         return tasks.get(index);
     }
 

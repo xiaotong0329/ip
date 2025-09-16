@@ -12,6 +12,9 @@ public class Meeseeks {
     private Ui ui;
 
     public Meeseeks(String filePath) {
+        assert filePath != null : "File path cannot be null";
+        assert !filePath.trim().isEmpty() : "File path cannot be empty";
+        
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -27,6 +30,8 @@ public class Meeseeks {
     }
 
     public String getResponse(String input) {
+        assert input != null : "Input cannot be null";
+        
         try {
             Command c = Parser.parse(input);
             String response = c.executeAndGetResponse(tasks, storage);
