@@ -41,12 +41,15 @@ public class Storage {
         assert tasks != null : "TaskList cannot be null";
         
         File f = new File(filePath);
-        f.getParentFile().mkdirs();
-
-        FileWriter writer = new FileWriter(f);
-        for (Task task : tasks.getList()) {
-            writer.write(task.toFileFormat() + "\n");
+        File parentDir = f.getParentFile();
+        if (parentDir != null && !parentDir.exists()) {
+            parentDir.mkdirs();
         }
-        writer.close();
+
+        try (FileWriter writer = new FileWriter(f)) {
+            for (Task task : tasks.getList()) {
+                writer.write(task.toFileFormat() + "\n");
+            }
+        }
     }
 }

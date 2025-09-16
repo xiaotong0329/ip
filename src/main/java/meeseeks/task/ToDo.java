@@ -12,7 +12,7 @@ public class ToDo extends Task {
 
     @Override
     public String toFileFormat() {
-        return "T | " + (isDone ? "1" : "0") + " | " + name;
+        return "T | " + (isDone() ? "1" : "0") + " | " + getName();
     }
 
 }

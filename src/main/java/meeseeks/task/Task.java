@@ -1,8 +1,13 @@
 package meeseeks.task;
 
 public class Task {
-    public String name;
-    protected Boolean isDone;
+    private static final String DONE_STATUS = "[X]";
+    private static final String NOT_DONE_STATUS = "[ ]";
+    private static final String DONE_FILE_VALUE = "1";
+    private static final String NOT_DONE_FILE_VALUE = "0";
+    
+    private String name;
+    private boolean isDone;
 
     public Task(String name) {
         this.name = name;
@@ -10,10 +15,16 @@ public class Task {
     }
 
     public String getStatus() {
-        return isDone ? "[X]" : "[ ]";
+        return isDone ? DONE_STATUS : NOT_DONE_STATUS;
     }
 
-    public String getName() { return name; }
+    public String getName() { 
+        return name; 
+    }
+    
+    public boolean isDone() {
+        return isDone;
+    }
 
     public void markAsDone() {
         isDone = true;
@@ -29,7 +40,7 @@ public class Task {
     }
 
     public String toFileFormat() {
-        return "T | " + (isDone ? "1" : "0") + " | " + name;
+        return "T | " + (isDone ? DONE_FILE_VALUE : NOT_DONE_FILE_VALUE) + " | " + name;
     }
 
 }

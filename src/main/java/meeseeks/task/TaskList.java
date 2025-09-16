@@ -34,11 +34,20 @@ public class TaskList {
     public int size() {
         return tasks.size();
     }
+    
+    public boolean isEmpty() {
+        return tasks.isEmpty();
+    }
 
     public ArrayList<Task> getList() {
         return tasks;
     }
 
+    /**
+     * Prints all tasks to the console with their index numbers.
+     * This method is deprecated in favor of getTasksAsString() for better separation of concerns.
+     */
+    @Deprecated
     public void listTasks() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
