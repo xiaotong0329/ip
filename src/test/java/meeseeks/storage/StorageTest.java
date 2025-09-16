@@ -24,7 +24,7 @@ class StorageTest {
 
         ArrayList<Task> loaded = storage.load();
         assertEquals(2, loaded.size());
-        assertEquals("test task", loaded.get(0).name);
+        assertEquals("test task", loaded.get(0).getName());
 
         // cleanup
         Files.deleteIfExists(new File(testFilePath).toPath());
