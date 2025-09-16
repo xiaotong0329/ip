@@ -1,6 +1,9 @@
 package meeseeks.task;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -45,10 +48,46 @@ public class TaskList {
             return "Your task list is empty!";
         }
         
-        StringBuilder result = new StringBuilder("Here are the tasks in your list:\n");
-        for (int i = 0; i < tasks.size(); i++) {
-            result.append((i + 1)).append(".").append(tasks.get(i)).append("\n");
-        }
-        return result.toString().trim();
+        String header = "Here are the tasks in your list:\n";
+        String taskList = IntStream.range(0, tasks.size())
+                .mapToObj(i -> (i + 1) + "." + tasks.get(i))
+                .collect(Collectors.joining("\n"));
+        return header + taskList;
+    }
+    
+    /**
+     * Finds tasks that contain the given keyword in their name (case-insensitive).
+     * Uses Java streams for efficient filtering.
+     * 
+     * @param keyword the keyword to search for
+     * @return a list of tasks that match the keyword
+     */
+    public List<Task> findTasksByKeyword(String keyword) {
+        String lowerKeyword = keyword.toLowerCase();
+        return tasks.stream()
+                .filter(task -> task.getName().toLowerCase().contains(lowerKeyword))
+                .collect(Collectors.toList());
+    }
+    
+    /**
+     * Gets the count of completed tasks using streams.
+     * 
+     * @return the number of completed tasks
+     */
+    public long getCompletedTaskCount() {
+        return tasks.stream()
+                .filter(Task::isDone)
+                .count();
+    }
+    
+    /**
+     * Gets the count of pending tasks using streams.
+     * 
+     * @return the number of pending tasks
+     */
+    public long getPendingTaskCount() {
+        return tasks.stream()
+                .filter(task -> !task.isDone())
+                .count();
     }
 }

@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Storage {
     private String filePath;
@@ -24,25 +26,27 @@ public class Storage {
             return new ArrayList<>();
         }
 
-        ArrayList<String> lines = new ArrayList<>(Files.readAllLines(path));
-        ArrayList<Task> tasks = new ArrayList<>();
-        for (String line : lines) {
-            Task task = Parser.parseTaskFromFile(line);
-            if (task != null) {
-                tasks.add(task);
-            }
-        }
-        return tasks;
+        List<String> lines = Files.readAllLines(path);
+        List<Task> tasks = lines.stream()
+                .map(Parser::parseTaskFromFile)
+                .filter(task -> task != null)
+                .collect(Collectors.toList());
+        return new ArrayList<>(tasks);
     }
 
     public void save(TaskList tasks) throws IOException {
         File f = new File(filePath);
         f.getParentFile().mkdirs();
 
-        FileWriter writer = new FileWriter(f);
-        for (Task task : tasks.getList()) {
-            writer.write(task.toFileFormat() + "\n");
+        String content = tasks.getList().stream()
+                .map(task -> task.toFileFormat())
+                .collect(Collectors.joining("\n"));
+        
+        try (FileWriter writer = new FileWriter(f)) {
+            writer.write(content);
+            if (!content.isEmpty()) {
+                writer.write("\n");
+            }
         }
-        writer.close();
     }
 }

@@ -6,6 +6,8 @@ import meeseeks.ui.Ui;
 import meeseeks.storage.Storage;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class FindCommand extends Command {
     private String keyword;
@@ -16,12 +18,7 @@ public class FindCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ArrayList<Task> matches = new ArrayList<>();
-        for (Task t : tasks.getList()) {
-            if (t.getName().toLowerCase().contains(keyword)) {
-                matches.add(t);
-            }
-        }
+        List<Task> matches = tasks.findTasksByKeyword(keyword);
 
         if (matches.isEmpty()) {
             ui.showMessage("No tasks found containing: " + keyword);

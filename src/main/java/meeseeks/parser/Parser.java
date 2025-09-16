@@ -29,6 +29,8 @@ public class Parser {
             return new MarkCommand(Integer.parseInt(fullCommand.substring(5)) - 1);
         } else if (fullCommand.startsWith("unmark ")) {
             return new UnmarkCommand(Integer.parseInt(fullCommand.substring(7)) - 1);
+        } else if (fullCommand.equals("stats")) {
+            return new StatsCommand();
         }
         return new UnknownCommand();
     }
