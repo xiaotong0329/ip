@@ -1,4 +1,4 @@
-pheackage meeseeks.storage;
+package meeseeks.storage;
 
 import meeseeks.parser.Parser;
 import meeseeks.task.TaskList;

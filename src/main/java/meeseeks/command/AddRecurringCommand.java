@@ -45,6 +45,13 @@ public class AddRecurringCommand extends Command {
         ui.showMessage(message);
     }
 
+    /**
+     * Executes the command and returns the response.
+     * 
+     * @param tasks the task list
+     * @param storage the storage
+     * @return the response
+     */
     @Override
     public String executeAndGetResponse(TaskList tasks, Storage storage) throws Exception {
         RecurringTask recurringTask = new RecurringTask(description, frequency, nextDueDate);
