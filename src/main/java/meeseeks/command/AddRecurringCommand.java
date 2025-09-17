@@ -35,6 +35,14 @@ public class AddRecurringCommand extends Command {
         this.nextDueDate = nextDueDate;
     }
 
+    /**
+     * Executes the command.
+     * 
+     * @param tasks the task list
+     * @param ui the UI
+     * @param storage the storage
+    
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
         RecurringTask recurringTask = new RecurringTask(description, frequency, nextDueDate);
