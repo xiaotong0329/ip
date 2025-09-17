@@ -125,6 +125,10 @@ public class Parser {
         }
     }
 
+
+    /**
+     * parse the tasks from file
+     */
     public static Task parseTaskFromFile(String line) {
         assert line != null : "Line cannot be null";
         assert !line.trim().isEmpty() : "Line cannot be empty";
