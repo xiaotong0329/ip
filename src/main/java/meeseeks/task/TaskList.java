@@ -8,10 +8,19 @@ import java.util.stream.IntStream;
 public class TaskList {
     private ArrayList<Task> tasks;
 
+    /**
+     * Creates an empty TaskList.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Creates a TaskList with the specified tasks.
+     * 
+     * @param tasks the initial list of tasks (cannot be null)
+     * @throws AssertionError if tasks is null
+     */
     public TaskList(ArrayList<Task> tasks) {
         assert tasks != null : "Task list cannot be null";
         this.tasks = tasks;
