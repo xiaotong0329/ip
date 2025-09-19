@@ -17,31 +17,66 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    public void add(Task t) {
-        assert t != null : "Task cannot be null";
-        tasks.add(t);
+    /**
+     * Adds a new task to the task list.
+     * 
+     * @param task the task to add (cannot be null)
+     * @throws AssertionError if task is null
+     */
+    public void add(Task task) {
+        assert task != null : "Task cannot be null";
+        tasks.add(task);
     }
 
+    /**
+     * Removes and returns the task at the specified index.
+     * 
+     * @param index the index of the task to remove (0-based)
+     * @return the removed task
+     * @throws AssertionError if index is out of bounds
+     */
     public Task delete(int index) {
         assert index >= 0 : "Index must be non-negative";
         assert index < tasks.size() : "Index must be within bounds of task list";
         return tasks.remove(index);
     }
 
+    /**
+     * Gets the task at the specified index without removing it.
+     * 
+     * @param index the index of the task to retrieve (0-based)
+     * @return the task at the specified index
+     * @throws AssertionError if index is out of bounds
+     */
     public Task get(int index) {
         assert index >= 0 : "Index must be non-negative";
         assert index < tasks.size() : "Index must be within bounds of task list";
         return tasks.get(index);
     }
 
+    /**
+     * Gets the total number of tasks in the list.
+     * 
+     * @return the number of tasks
+     */
     public int size() {
         return tasks.size();
     }
     
+    /**
+     * Checks if the task list is empty.
+     * 
+     * @return true if the list is empty, false otherwise
+     */
     public boolean isEmpty() {
         return tasks.isEmpty();
     }
 
+    /**
+     * Gets the underlying ArrayList of tasks.
+     * 
+     * @return the ArrayList containing all tasks
+     */
     public ArrayList<Task> getList() {
         return tasks;
     }

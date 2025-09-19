@@ -7,14 +7,29 @@ import meeseeks.ui.Ui;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Command to add new tasks to the task list.
+ * Supports three types of tasks: Todo, Deadline, and Event.
+ */
 public class AddCommand extends Command {
+    private static final String TODO_TYPE = "todo";
+    private static final String DEADLINE_TYPE = "deadline";
+    private static final String EVENT_TYPE = "event";
+    private static final String DATE_TIME_PATTERN = "d/M/yyyy HHmm";
+    
     private String description;
     private String type;
     private String by;
     private String from;
     private String to;
 
-    // For todo
+    /**
+     * Constructor for creating a Todo task.
+     * 
+     * @param description the task description
+     * @param type the task type (should be "todo")
+     * @throws AssertionError if description or type is null
+     */
     public AddCommand(String description, String type) {
         assert description != null : "Description cannot be null";
         assert type != null : "Type cannot be null";
@@ -22,7 +37,14 @@ public class AddCommand extends Command {
         this.type = type;
     }
 
-    // For deadline
+    /**
+     * Constructor for creating a Deadline task.
+     * 
+     * @param description the task description
+     * @param type the task type (should be "deadline")
+     * @param by the deadline date and time in format "d/M/yyyy HHmm"
+     * @throws AssertionError if any parameter is null
+     */
     public AddCommand(String description, String type, String by) {
         assert description != null : "Description cannot be null";
         assert type != null : "Type cannot be null";
@@ -32,7 +54,15 @@ public class AddCommand extends Command {
         this.by = by.trim();
     }
 
-    // For event
+    /**
+     * Constructor for creating an Event task.
+     * 
+     * @param description the task description
+     * @param type the task type (should be "event")
+     * @param from the start time of the event
+     * @param to the end time of the event
+     * @throws AssertionError if any parameter is null
+     */
     public AddCommand(String description, String type, String from, String to) {
         assert description != null : "Description cannot be null";
         assert type != null : "Type cannot be null";
@@ -44,27 +74,46 @@ public class AddCommand extends Command {
         this.to = to.trim();
     }
 
+    /**
+     * Executes the add command by creating the appropriate task type and adding it to the task list.
+     * 
+     * @param tasks the task list to add the new task to
+     * @param ui the UI component for displaying messages
+     * @param storage the storage component (not used in this command)
+     * @throws Exception if the task type is unknown or date parsing fails
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws Exception {
-        Task t;
+        Task task = createTask();
+        tasks.add(task);
+        
+        String message = "Got it. I've added this task:\n  " + task +
+                "\nNow you have " + tasks.size() + " tasks in the list.";
+        ui.showMessage(message);
+    }
+    
+    /**
+     * Creates a task based on the command type and parameters.
+     * 
+     * @return the created task
+     * @throws Exception if the task type is unknown or date parsing fails
+     */
+    private Task createTask() throws Exception {
         switch (type) {
-            case "todo":
-                t = new ToDo(description);
-                break;
-            case "deadline":
-                DateTimeFormatter inputFmt = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
-                LocalDateTime byDate = LocalDateTime.parse(by, inputFmt);
-                t = new Deadline(description, byDate);
-                break;
-            case "event":
-                // Simplify for now (string storage). Can extend with LocalDateTime like deadline.
-                t = new Event(description, from, to);
-                break;
+            case TODO_TYPE:
+                return new ToDo(description);
+                
+            case DEADLINE_TYPE:
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
+                LocalDateTime deadlineDate = LocalDateTime.parse(by, formatter);
+                return new Deadline(description, deadlineDate);
+                
+            case EVENT_TYPE:
+                // Events store time as strings for flexibility
+                return new Event(description, from, to);
+                
             default:
-                throw new Exception("Unknown add type");
+                throw new Exception("Unknown task type: " + type);
         }
-        tasks.add(t);
-        ui.showMessage("Got it. I've added this task:\n  " + t +
-                "\nNow you have " + tasks.size() + " tasks in the list.");
     }
 }

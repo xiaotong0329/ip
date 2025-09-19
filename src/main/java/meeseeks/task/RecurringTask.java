@@ -56,14 +56,29 @@ public class RecurringTask extends Task {
         }
     }
 
+    /**
+     * Gets the recurrence frequency of this task.
+     * 
+     * @return the recurrence frequency (daily, weekly, monthly, or yearly)
+     */
     public RecurrenceFrequency getFrequency() {
         return frequency;
     }
 
+    /**
+     * Gets the next due date for this recurring task.
+     * 
+     * @return the next due date as a LocalDateTime
+     */
     public LocalDateTime getNextDueDate() {
         return nextDueDate;
     }
 
+    /**
+     * Gets the last completed date of this recurring task.
+     * 
+     * @return the last completed date, or null if never completed
+     */
     public LocalDateTime getLastCompletedDate() {
         return lastCompletedDate;
     }

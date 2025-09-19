@@ -27,19 +27,23 @@ public class MainWindow extends AnchorPane {
     private Image userImage;
     private Image dukeImage;
 
+    /**
+     * Initializes the main window components and sets up the user interface.
+     * This method is called automatically by JavaFX when the FXML is loaded.
+     */
     @FXML
     public void initialize() {
         // Auto-scroll to bottom when new messages are added
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         
-        // Load images
+        // Load images for user and application avatars
         userImage = new Image(this.getClass().getResourceAsStream("/image/user.png"));
         dukeImage = new Image(this.getClass().getResourceAsStream("/image/meeseeks.png"));
         
-        // Add keyboard shortcuts
+        // Add keyboard shortcuts for better user experience
         userInput.setOnKeyPressed(this::handleKeyPress);
         
-        // Welcome message
+        // Display welcome message with available commands
         String welcomeMessage = "Hello! I'm Mr. Meeseeks!\nLook at me!\n\n" +
                 "I can help you manage your tasks. Try these commands:\n" +
                 "• todo <task> - Add a todo\n" +
@@ -58,15 +62,25 @@ public class MainWindow extends AnchorPane {
         );
     }
 
+    /**
+     * Handles keyboard input events, specifically the Enter key for sending messages.
+     * 
+     * @param event the key event that occurred
+     */
     private void handleKeyPress(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             handleUserInput();
         }
     }
 
-    /** Injects the Duke instance */
-    public void setDuke(Meeseeks d) {
-        meeseeks = d;
+    /**
+     * Injects the Meeseeks application instance into this controller.
+     * This allows the controller to communicate with the main application logic.
+     * 
+     * @param meeseeks the Meeseeks application instance
+     */
+    public void setDuke(Meeseeks meeseeks) {
+        this.meeseeks = meeseeks;
     }
 
     /**
