@@ -11,6 +11,11 @@ public class StatsCommand extends Command {
     
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        if (tasks == null) {
+            ui.showMessage("Error: Task list is null");
+            return;
+        }
+        
         long totalTasks = tasks.size();
         long completedTasks = tasks.getCompletedTaskCount();
         long pendingTasks = tasks.getPendingTaskCount();
