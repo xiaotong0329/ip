@@ -47,6 +47,7 @@ public class Parser {
     private static final String NOT_DONE_VALUE = "0";
     
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+    private static final String RECURRING_FORMAT_ERROR = "Invalid recurring command format. Use: recurring <description> /every <frequency> /due <date>";
     
     public static Command parse(String fullCommand) {
         assert fullCommand != null : "Command string cannot be null";
@@ -100,7 +101,7 @@ public class Parser {
             // Split by frequency separator
             String[] parts = commandBody.split(RECURRING_FREQUENCY_SEPARATOR, 2);
             if (parts.length != 2) {
-                throw new IllegalArgumentException("Invalid recurring command format. Use: recurring <description> /every <frequency> /due <date>");
+                throw new IllegalArgumentException(RECURRING_FORMAT_ERROR);
             }
             
             String description = parts[0].trim();
@@ -108,7 +109,7 @@ public class Parser {
             // Split the remaining part by due separator
             String[] frequencyAndDue = parts[1].split(RECURRING_DUE_SEPARATOR, 2);
             if (frequencyAndDue.length != 2) {
-                throw new IllegalArgumentException("Invalid recurring command format. Use: recurring <description> /every <frequency> /due <date>");
+                throw new IllegalArgumentException(RECURRING_FORMAT_ERROR);
             }
             
             String frequencyStr = frequencyAndDue[0].trim();
