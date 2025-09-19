@@ -107,11 +107,11 @@ public class TaskList {
             return "Your task list is empty!";
         }
         
-        String header = "Here are the tasks in your list:\n";
-        String taskList = IntStream.range(0, tasks.size())
+        StringBuilder result = new StringBuilder("Here are the tasks in your list:\n");
+        IntStream.range(0, tasks.size())
                 .mapToObj(i -> (i + 1) + "." + tasks.get(i))
-                .collect(Collectors.joining("\n"));
-        return header + taskList;
+                .forEach(task -> result.append(task).append("\n"));
+        return result.toString().trim();
     }
     
     /**
