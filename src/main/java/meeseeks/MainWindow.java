@@ -43,13 +43,14 @@ public class MainWindow extends AnchorPane {
         String welcomeMessage = "Hello! I'm Mr. Meeseeks!\nLook at me!\n\n" +
                 "I can help you manage your tasks. Try these commands:\n" +
                 "• todo <task> - Add a todo\n" +
-                "• deadline <task> /by <date> - Add a deadline\n" +
+                "• deadline <task> /by <date: dd/mm/yyyy hhmm> - Add a deadline\n" +
                 "• event <task> /from <start> /to <end> - Add an event\n" +
-                "• recurring <task> /every <frequency> /due <date> - Add recurring task\n" +
+                "• recurring <task> /every <frequency> /due <date: dd/mm/yyyy hhmm> - Add recurring task\n" +
                 "• list - Show all tasks\n" +
                 "• find <keyword> - Search tasks\n" +
                 "• overdue - Show overdue recurring tasks\n" +
                 "• stats - Show task statistics\n" +
+                "• delete <task number> - delete a task\n" +
                 "• bye - Exit";
         
         dialogContainer.getChildren().add(

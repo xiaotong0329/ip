@@ -1,7 +1,6 @@
 package meeseeks.task;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a recurring task that repeats at specified intervals.
@@ -120,11 +119,11 @@ public class RecurringTask extends Task {
     @Override
     public String toString() {
         String baseString = "[R]" + super.toString();
-        String dueInfo = " (due: " + formatDateTime(nextDueDate) + ")";
+        String dueInfo = " (due: " + nextDueDate + ")";
         String frequencyInfo = " [repeats " + frequency.getDisplayName() + "]";
         
         if (isOverdue()) {
-            dueInfo = " (OVERDUE: " + formatDateTime(nextDueDate) + ")";
+            dueInfo = " (OVERDUE: " + nextDueDate + ")";
         }
         
         return baseString + dueInfo + frequencyInfo;
@@ -146,14 +145,4 @@ public class RecurringTask extends Task {
         return sb.toString();
     }
 
-    /**
-     * Formats a LocalDateTime for display.
-     * 
-     * @param dateTime the date and time to format
-     * @return formatted string
-     */
-    private String formatDateTime(LocalDateTime dateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm");
-        return dateTime.format(formatter);
-    }
 }
