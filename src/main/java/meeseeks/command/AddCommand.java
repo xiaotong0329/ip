@@ -16,6 +16,7 @@ public class AddCommand extends Command {
     private static final String DEADLINE_TYPE = "deadline";
     private static final String EVENT_TYPE = "event";
     private static final String DATE_TIME_PATTERN = "d/M/yyyy HHmm";
+    private static final String SUCCESS_MESSAGE_FORMAT = "Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.";
     
     private String description;
     private String type;
@@ -87,8 +88,7 @@ public class AddCommand extends Command {
         Task task = createTask();
         tasks.add(task);
         
-        String message = "Got it. I've added this task:\n  " + task +
-                "\nNow you have " + tasks.size() + " tasks in the list.";
+        String message = String.format(SUCCESS_MESSAGE_FORMAT, task, tasks.size());
         ui.showMessage(message);
     }
     
