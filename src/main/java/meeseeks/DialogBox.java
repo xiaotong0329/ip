@@ -44,6 +44,10 @@ public class DialogBox extends HBox {
         applyMessageStyling(type);
     }
 
+/**
+ * Applies different styling based on message type for asymmetric design
+ * @param type the message type
+ */
     private void applyMessageStyling(MessageType type) {
         switch (type) {
             case USER:
