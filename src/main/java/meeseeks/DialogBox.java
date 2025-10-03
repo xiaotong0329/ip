@@ -104,6 +104,12 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Creates a user dialog box
+     * @param text the text to display
+     * @param img the image to display
+     * @return the user dialog box
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img, MessageType.USER);
     }
