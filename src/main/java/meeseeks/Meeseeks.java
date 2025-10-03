@@ -29,6 +29,9 @@ public class Meeseeks {
         }
     }
 
+    /**
+     * Creates a Meeseeks instance with the default file path.
+     */
     public Meeseeks() {
         this("data/meeseeks.txt");
     }
