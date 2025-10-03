@@ -114,6 +114,12 @@ public class DialogBox extends HBox {
         return new DialogBox(text, img, MessageType.USER);
     }
 
+    /**
+     * Creates an app dialog box
+     * @param text the text to display
+     * @param img the image to display
+     * @return the app dialog box
+     */
     public static DialogBox getAppDialog(String text, Image img) {
         var db = new DialogBox(text, img, MessageType.APP);
         db.flip();
