@@ -6,6 +6,10 @@ import meeseeks.storage.Storage;
 import meeseeks.task.TaskList;
 import meeseeks.ui.Ui;
 
+/**
+ * Main application class for the Meeseeks task manager.
+ * Handles the core logic and communication between UI and storage.
+ */
 public class Meeseeks {
     private Storage storage;
     private TaskList tasks;
