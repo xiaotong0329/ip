@@ -126,6 +126,12 @@ public class DialogBox extends HBox {
         return db;
     }
 
+    /**
+     * Creates an error dialog box
+     * @param text the text to display
+     * @param img the image to display
+     * @return the error dialog box
+     */
     public static DialogBox getErrorDialog(String text, Image img) {
         var db = new DialogBox(text, img, MessageType.ERROR);
         db.flip();
